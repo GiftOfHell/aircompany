@@ -10,7 +10,7 @@ class PassengerPlane extends Plane {
         passengersCapacity
         ) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this._passengersCapacity = passengersCapacity;
+        this.passengersCapacity = passengersCapacity;
     }
 
     get passengersCapacity() {

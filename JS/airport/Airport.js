@@ -1,10 +1,8 @@
-const PassengerPlane = require('./planes/PassengerPlane');
-const MilitaryPlane = require('./planes/MilitaryPlane');
-const ExperimentalPlane = require('./planes/ExperimentalPlane');
+const PassengerPlane = require('../planes/PassengerPlane');
+const MilitaryPlane = require('../planes/MilitaryPlane');
+const ExperimentalPlane = require('../planes/ExperimentalPlane');
 
-const MILITARY_TYPES = require('./models/MilitaryTypes');
-const EXPERIMENTAL_TYPES = require('./models/ExperimentalTypes');
-const CLASSIFICATION_LEVELS = require("./models/ClassificationLevels");
+const MILITARY_TYPES = require('../models/MilitaryTypes');
 
 class Airport {
 
@@ -47,12 +45,8 @@ class Airport {
         return this.getMilitaryPlanes().filter(militaryPlane => militaryPlane.militaryType === MILITARY_TYPES.BOMBER);
     }
 
-    getClassifiedExperimentalPlanes() {
-        return this.getExperimentalPlanes().filter(experimentalPlane => experimentalPlane.classificationLevel !== CLASSIFICATION_LEVELS.UNCLASSIFIED);
-    }
-
     sortByMaxDistance() {
-        return this.getExperimentalPlanes().sort((firstPlane, secondPlane) => (firstPlane.maxFlightDistance > secondPlane.maxFlightDistance) ? 1 : -1);
+        return this.getPlanes().sort((firstPlane, secondPlane) => (firstPlane.maxFlightDistance > secondPlane.maxFlightDistance) ? 1 : -1);
     }
 
     sortByMaxSpeed() {

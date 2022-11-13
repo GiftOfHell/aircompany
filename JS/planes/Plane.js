@@ -6,10 +6,10 @@ class Plane {
         maxFlightDistance, 
         maxLoadCapacity
         ) {
-        this._model = model;
-        this._maxSpeed = maxSpeed;
-        this._maxFlightDistance = maxFlightDistance;
-        this._maxLoadCapacity = maxLoadCapacity;
+        this.model = model;
+        this.maxSpeed = maxSpeed;
+        this.maxFlightDistance = maxFlightDistance;
+        this.maxLoadCapacity = maxLoadCapacity;
     }
 
     get model() {

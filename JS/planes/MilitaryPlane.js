@@ -10,7 +10,7 @@ class MilitaryPlane extends Plane {
         militaryType
         ) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this._militaryType = militaryType;
+        this.militaryType = militaryType;
     }
 
     get militaryType() {
