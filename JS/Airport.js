@@ -12,25 +12,20 @@ class Airport {
         this._planes = planes;
     }
 
-    get planes() {
+    getPlanes() {
         return this._planes;
     }
 
-    set planes(value) {
-        this._planes = value;
-    }
-
     getPassengerPlanes() {
-        return this.planes.filter(plane => plane instanceof PassengerPlane);
+        return this.getPlanes().filter(plane => plane instanceof PassengerPlane);
     }
 
     getMilitaryPlanes() {
-        return this.planes.filter(plane => plane instanceof MilitaryPlane);
+        return this.getPlanes().filter(plane => plane instanceof MilitaryPlane);
     }
 
     getExperimentalPlanes() {
-        return this.planes.filter(plane => plane.constructor.name === "ExperimentalPlane");
-        //return this.planes.filter(plane => plane instanceof ExperimentalPlane);
+        return this.getPlanes().filter(plane => plane instanceof ExperimentalPlane);
     }
 
     getPassengerPlaneWithMaxPassengersCapacity() {
@@ -53,7 +48,7 @@ class Airport {
     }
 
     getClassifiedExperimentalPlanes() {
-        return this.getExperimentalPlanes().filter(experimentalPlane => experimentalPlane.classificationLevel = CLASSIFICATION_LEVELS.UNCLASSIFIED);
+        return this.getExperimentalPlanes().filter(experimentalPlane => experimentalPlane.classificationLevel !== CLASSIFICATION_LEVELS.UNCLASSIFIED);
     }
 
     sortByMaxDistance() {
@@ -61,11 +56,11 @@ class Airport {
     }
 
     sortByMaxSpeed() {
-        return this.planes.sort((firstPlane, secondPlane) => (firstPlane.maxSpeed > secondPlane.maxSpeed) ? 1 : -1);
+        return this.getPlanes().sort((firstPlane, secondPlane) => (firstPlane.maxSpeed > secondPlane.maxSpeed) ? 1 : -1);
     }
 
     sortByMaxLoadCapacity() {
-        return this.planes.sort((firstPlane, secondPlane) => (firstPlane.maxLoadCapacity > secondPlane.maxLoadCapacity) ? 1 : -1);
+        return this.getPlanes().sort((firstPlane, secondPlane) => (firstPlane.maxLoadCapacity > secondPlane.maxLoadCapacity) ? 1 : -1);
     }
 
     static print(planes) {

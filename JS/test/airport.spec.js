@@ -58,7 +58,7 @@ describe('Test Airport class', () => {
     it('Should sort planes by max load capacity', () => {
         const airport = new Airport(planes);
         airport.sortByMaxLoadCapacity();
-        expect(airport.planes).to.be.ascendingBy("maxLoadCapacity");
+        expect(airport.getPlanes()).to.be.ascendingBy("maxLoadCapacity");
     })
 
     it('Should check that at least one bomber is present in military planes', () => {
