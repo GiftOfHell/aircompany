@@ -1,16 +1,36 @@
 const PassengerPlane = require('./Planes/PassengerPlane');
 const MilitaryPlane = require('./Planes/MilitaryPlane');
-const MilitaryTypes = require('./models/MilitaryTypes');
 const ExperimentalPlane = require('./Planes/ExperimentalPlane');
+
+const MILITARY_TYPES = require('./models/MilitaryTypes');
+const EXPERIMENTAL_TYPES = require('./models/ExperimentalTypes');
+const CLASSIFICATION_LEVELS = require("./models/ClassificationLevels");
 
 class Airport {
 
     constructor(planes) {
-        this.planes = planes;
+        this._planes = planes;
+    }
+
+    get planes() {
+        return this._planes;
+    }
+
+    set planes(value) {
+        this._planes = value;
     }
 
     getPassengerPlanes() {
         return this.planes.filter(plane => plane instanceof PassengerPlane);
+    }
+
+    getMilitaryPlanes() {
+        return this.planes.filter(plane => plane instanceof MilitaryPlane);
+    }
+
+    getExperimentalPlanes() {
+        return this.planes.filter(plane => plane.constructor.name === "ExperimentalPlane");
+        //return this.planes.filter(plane => plane instanceof ExperimentalPlane);
     }
 
     getPassengerPlaneWithMaxPassengersCapacity() {
@@ -24,24 +44,20 @@ class Airport {
         return passengerPlanes.filter(passengerPlane => passengerPlane.passengersCapacity === maxPassengersCapacity);
     }
 
-    getMilitaryPlanes() {
-        return this.planes.filter(plane => plane instanceof MilitaryPlane);
-    }
-
     getTransportMilitaryPlanes() {
-        return this.getMilitaryPlanes().filter(militaryPlane => militaryPlane.militaryType === MilitaryTypes.TRANSPORT);
+        return this.getMilitaryPlanes().filter(militaryPlane => militaryPlane.militaryType === MILITARY_TYPES.TRANSPORT);
     }
 
     getBomberMilitaryPlanes() {
-        return this.getMilitaryPlanes().filter(militaryPlane => militaryPlane.militaryType === MilitaryTypes.BOMBER);
+        return this.getMilitaryPlanes().filter(militaryPlane => militaryPlane.militaryType === MILITARY_TYPES.BOMBER);
     }
 
-    getExperimentalPlanes() {
-        return this.planes.filter(plane => plane.constructor.name === "ExperimentalPlane");
+    getClassifiedExperimentalPlanes() {
+        return this.getExperimentalPlanes().filter(experimentalPlane => experimentalPlane.classificationLevel = CLASSIFICATION_LEVELS.UNCLASSIFIED);
     }
 
     sortByMaxDistance() {
-        return this.planes.sort((firstPlane, secondPlane) => (firstPlane.maxFlightDistance > secondPlane.maxFlightDistance) ? 1 : -1);
+        return this.getExperimentalPlanes().sort((firstPlane, secondPlane) => (firstPlane.maxFlightDistance > secondPlane.maxFlightDistance) ? 1 : -1);
     }
 
     sortByMaxSpeed() {
