@@ -3,10 +3,10 @@ chai.use(require("chai-sorted"));
 
 const { assert, expect } = chai;
 
-const Plane = require('../Planes/Plane');
-const PassengerPlane = require('../Planes/PassengerPlane');
-const MilitaryPlane = require('../Planes/MilitaryPlane');
-const ExperimentalPlane = require('../Planes/ExperimentalPlane');
+const Plane = require('../planes/Plane');
+const PassengerPlane = require('../planes/PassengerPlane');
+const MilitaryPlane = require('../planes/MilitaryPlane');
+const ExperimentalPlane = require('../planes/ExperimentalPlane');
 
 const MILITARY_TYPES = require('../models/MilitaryTypes');
 const EXPERIMENTAL_TYPES = require('../models/ExperimentalTypes');
